@@ -26,4 +26,6 @@ Replace `A` by the number of the target exercice.
 
 ## Exercice 1
 
-![exercice 1 result image](./documentation/exo1-result.png)
+![exercice 1 result image](./documentation/exo1-result-1.png)
+
+![exercice 1 result image](./documentation/exo1-result-2.png)
