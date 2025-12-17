@@ -8,34 +8,31 @@ from mesh_functions import *
 
 def scaling_matrix(axis, k):
     """Génère une matrice de mise à l'échelle le long d'un axe arbitraire."""
-    # TODO : mettre en œuvre 
     axis = vector_normalize(axis)
     return np.array([
-        [1, 0, 0],
-        [0, 1, 0],
-        [0, 0, 1]
+        [1 + k*axis.x, 0, 0],
+        [0, 1 + k*axis.y, 0],
+        [0, 0, 1 + k*axis.z]
     ])
 
 def rotation_matrix(axis, theta):
     """Génère une matrice de rotation autour d'un axe arbitraire."""
-    # TODO : mettre en œuvre 
     axis = vector_normalize(axis)
     cos_theta = np.cos(theta)
     sin_theta = np.sin(theta)
     return np.array([
-        [1, 0, 0],
-        [0, 1, 0],
-        [0, 0, 1]
+        [(axis.x**2)*(1-cos_theta)+cos_theta,            (axis.x*axis.y)*(1-cos_theta)-axis.z*sin_theta,  (axis.x*axis.z)*(1-cos_theta)+axis.y*sin_theta],
+        [(axis.x*axis.y)*(1-cos_theta)+axis.z*sin_theta, (axis.y**2)*(1-cos_theta)+cos_theta,             (axis.y*axis.z)*(1-cos_theta)-axis.x*sin_theta],
+        [(axis.x*axis.y)*(1-cos_theta)-axis.y*sin_theta, (axis.y*axis.z)*(1-cos_theta)+axis.x*sin_theta,  (axis.z**2)*(1-cos_theta)+cos_theta]
     ])
 
 def orthographic_projection_matrix(axis):
     """Génère une matrice de projection orthographique pour la projection sur un plan normal à un axe donné."""
-    # TODO : mettre en œuvre 
     axis = vector_normalize(axis)
     return np.array([
-        [1, 0, 0],
-        [0, 1, 0],
-        [0, 0, 1]
+        [1-(axis.x**2), -1*axis.x*axis.y, -1*axis.x*axis.z],
+        [-1*axis.x*axis.y, 1-(axis.y**2), -1*axis.y*axis.z],
+        [-1*axis.x*axis.z, -1*axis.y*axis.z, 1-(axis.z**2)]
     ])
 
 
